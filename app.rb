@@ -1,7 +1,7 @@
 require 'bundler/setup'
 Bundler.require
 require 'sinatra/reloader' if development?
-require './models.rb'
+require './models.rb' #ActiveRecordを使用するため
 
 get '/' do
   erb :index

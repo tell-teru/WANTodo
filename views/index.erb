@@ -1,12 +1,63 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>タイトル</title>
-</head>
-<body>
   
+  <style>
+    .button {
+      display       : inline-block;
+      border-radius : 13%;          /* 角丸       */
+      font-size     : 18pt;        /* 文字サイズ */
+      text-align    : center;      /* 文字位置   */
+      cursor        : pointer;     /* カーソル   */
+      padding       : 12px 12px;   /* 余白       */
+      background    : #003366;     /* 背景色     */
+      color         : #ffffff;     /* 文字色     */
+      line-height   : 1em;         /* 1行の高さ  */
+      transition    : .3s;         /* なめらか変化 */
+      box-shadow    : 1px 1px 3px #666666;  /* 影の設定 */
+      border        : 2px solid #003366;    /* 枠の指定 */
+    }
+    .button:hover {
+      box-shadow    : none;        /* カーソル時の影消去 */
+      color         : #003366;     /* 背景色     */
+      background    : #ffffff;     /* 文字色     */
+    }
+  </style>
+  
+  
+  
+<body>
+  <!--<h1 class="contents">ホーム</h1>-->
+  <% if current_user.nil? %>
+      <h1>ログインしていません</h1>
+  <% else %>
+      <!--<h1><%= current_user.name %>の投稿</h1>-->
+      <form action="/want/new">
+        <input type="submit" value"want" class="button">
+      </form>
+      
+      <% @wants.each do |want| %> 
+        <div class="post">
+          <div class="contents">
+            <img src="https://placehold.jp/ECD53E/ffffff/150x150.png" alt="ユーザーアイコン" class="user-icon">
+            <div class="text">
+              <div class="title">
+                <span class="user-name"><%= want.title %></span>
+              </div>
+              <p><%= want.place %></p>
+              <div class="actions">
+                <!--<form>-->
+                <!--  <input type="submit" value="いいね(100)">-->
+                <!--</form>-->
+                <a href="/want/edit/<%= want.id %>">編集</a>
+                <form action ="/want/delete/<%= want.id%>" method = "post">
+                  <input type="submit" value="削除">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      
+  <% end %>
 </body>
 </html>

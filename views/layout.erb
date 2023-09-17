@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title><%= @title %></title>
+		<link rel="stylesheet" href="/assets/css/index.css">
+		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+	<body>
+		<div class="container">
+      <nav>
+        <div class="top">
+          <a href="/">
+            <!--ホームに戻る-->
+            <span> WANTodo </span>
+          </a>
+          
+          
+          
+          
+          <% if !current_user.nil? %>
+          	<a href="/user/<%= current_user.id %>">
+	            <span><%= current_user.name %>のページ</span>
+	          </a>
+	          <a href="/signout">
+	            <span> SIGN OUT </span>
+	          </a>
+	        <% else %>
+	        	<a href="/signup">
+	            <span> 新規登録 </span>
+	          </a>
+	          <a href="/signin">
+	            <span> ログイン </span>
+	          </a>
+         	<% end %>
+        </div>
+      </nav>
+		<main>
+			<!--全部のerbファイルの中身-->
+			<%= yield %>
+		</main>
+	</body>
+</html>

@@ -10,27 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_01_073247) do
+ActiveRecord::Schema.define(version: 2023_09_17_075151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "counts", force: :cascade do |t|
-    t.integer "number"
-    t.integer "user_id"
-    t.string "name"
-    t.string "img"
-  end
 
   create_table "entries", force: :cascade do |t|
     t.integer "user_id"
     t.integer "count_id"
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.string "img"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.string "password_digest"
+  end
+
+  create_table "parts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+  end
+
+  create_table "terms", force: :cascade do |t|
+    t.integer "want_id"
+    t.date "start_date"
+    t.date "end_date"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
     t.string "img"
+  end
+
+  create_table "wants", force: :cascade do |t|
+    t.text "title"
+    t.text "place"
+    t.integer "post_user_id"
+    t.integer "genre_id"
+    t.integer "post_group_id"
+    t.boolean "done"
   end
 
 end

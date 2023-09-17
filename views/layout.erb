@@ -7,7 +7,301 @@
 		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+  </head>
+  <style>
+  :root {
+      --main-color: #ECD53E;
+      --text-color: #1F1F1F;
+      --border-color: #F0F3F4;
+      --hover-color: #F3F3F3;
+    }
+    
+    body, input {
+      background-color: #ffffff;
+      color: var(--text-color);
+    }
+    
+    .container {
+      display: flex;
+      max-width: 1080px;
+      margin: 0 auto;
+      border-right: solid 1px var(--border-color);
+    }
+    
+    .contents {
+      margin: 20px 25px 15px 25px;
+    }
+    
+    main {
+      width: 100%;
+    }
+    
+    span, p, h1, h2, label {
+      color: var(--text-color);
+    }
+    
+    h1 {
+      font-size: 20px;
+    }
+    
+    .button {
+      display: block !important;
+      height: 50px;
+      padding: 12px 0 10px 0 !important;
+      font-size: 17px;
+      color: #ffffff;
+      background-color: var(--main-color);
+      font-weight: 700;
+      text-align: center;
+    }
+    
+    .button:hover {
+      background-color: var(--main-color) !important;
+      opacity: 0.75 !important;
+    }
+    
+    .user-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 30px;
+      object-fit: cover;
+    }
+    
+    .header {
+      border-bottom: solid 1px var(--border-color);
+    }
+    
+    a {
+      text-decoration: none;
+    }
+    
+    a:hover {
+      opacity: 0.5;
+    }
+    
+    nav {
+      width: 330px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0 20px 0 20px;
+      border-right: solid 1px var(--border-color);
+    }
+    
+    nav .icon.tobisuke {
+      margin-top: 20px;
+      width: 50px;
+      height: 50px;
+      /*margin-left: 20px;*/
+    }
+    
+    nav .icon {
+      width: 30px;
+      height: 30px;
+    }
+    
+    nav .top {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    nav .top a {
+      height: 50px;
+      padding: 10px 10px 10px 10px;
+      border-radius: 25px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    
+    nav .top a:hover {
+      background-color: var(--hover-color);
+      opacity: 1;
+    }
+    
+    nav .top a img {
+      width: 20px;
+      height: 20px;
+    }
+    
+    nav .top a span {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    nav .bottom{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    nav .bottom .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    nav .bottom .user-profile span {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    
+    nav .bottom a .logout-icon {
+      width: 20px;
+      height: 20px;
+    }
+    
+    /* index, comments */
+    .post {
+      border-top: solid 1px var(--border-color);
+    }
+    
+    .post .text {
+      width: 100%;
+    }
+    
+    .post .contents {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .post .contents .title .user-name {
+      font-size: 15px;
+      font-weight: bold;
+    }
+    
+    .post .actions {
+      width: 100%;
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .post .actions input[type="submit"], .post .actions a {
+      height: auto;
+      color: var(--text-color);
+      background: none;
+      font-weight: 500;
+    }
+    
+    .comment .post {
+      border-bottom: solid 1px var(--border-color);
+    }
+    
+    
+    /* profile */
+    .profile {
+      position: relative;
+    }
+    
+    .profile .header-photo {
+      background-color: #D9D9D9;
+      height: 150px;
+    }
+    
+    .profile .user-icon {
+      margin: -60px 0 20px 0;
+      width: 120px;
+      height: 120px;
+      border-radius: 60px;
+    }
+    
+    .profile .edit-profile-button {
+      position: absolute;
+      top: 170px;
+      right: 20px;
+      border: 1px solid var(--text-color);
+      padding: 8px 20px;
+      border-radius: 100px;
+      color: var(--text-color);
+      font-weight: bold;
+    }
+    
+    /* form */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    form div {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    
+    form div label {
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #FFFFFF;
+    }
+    
+    form div input[type=text], form div input[type=password], form div textarea {
+      min-height: 50px;
+      padding: 0 15px;
+      border-radius: 30px;
+      border: solid 1.5px var(--border-color);
+      background-color: #FFFFFF;
+    }
+    
+    form div textarea {
+      min-height: 150px;
+      padding: 15px;
+    }
+    
+    form div textarea[class="comment"] {
+      min-height: 100px;
+    } 
+    
+    form input[type=submit] {
+      width: 120px;
+      height: 40px;
+      background-color: var(--main-color);
+      color: #ffffff;
+      font-weight: bold;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    form input[type=submit]:hover {
+      opacity: 0.75;
+    }
+  
+  
+  
+    .button {
+      display       : inline-block;
+      border-radius : 13%;          /* 角丸       */
+      font-size     : 18pt;        /* 文字サイズ */
+      text-align    : center;      /* 文字位置   */
+      cursor        : pointer;     /* カーソル   */
+      padding       : 12px 12px;   /* 余白       */
+      background    : #003366;     /* 背景色     */
+      color         : #ffffff;     /* 文字色     */
+      line-height   : 1em;         /* 1行の高さ  */
+      transition    : .3s;         /* なめらか変化 */
+      box-shadow    : 1px 1px 3px #666666;  /* 影の設定 */
+      border        : 2px solid #003366;    /* 枠の指定 */
+    }
+    .button:hover {
+      box-shadow    : none;        /* カーソル時の影消去 */
+      color         : #003366;     /* 背景色     */
+      background    : #ffffff;     /* 文字色     */
+    }
+    
+    .user-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 30px;
+      object-fit: cover;
+    }
+  </style>
+  
+  
 	<body>
 		<div class="container">
       <nav>
@@ -22,6 +316,7 @@
           
           <% if !current_user.nil? %>
           	<a href="/user/<%= current_user.id %>">
+	            <img src=<%= current_user.img %> alt="ユーザーアイコン" class="user-icon">
 	            <span><%= current_user.name %>のページ</span>
 	          </a>
 	          <a href="/signout">

@@ -13,9 +13,9 @@ require 'date'
 enable :sessions #セッション機能を使えるようにする
 
 helpers do #ログイン中のユーザーの情報を取得
-    def current_user
-        User.find_by(id: session[:user])
-    end
+  def current_user
+      User.find_by(id: session[:user])
+  end
 
 end
 
@@ -35,6 +35,18 @@ end
 get '/' do
   @title = 'WANTodo ホーム'
   @wants = Want.all
+  
+  # # 投稿したuserのimgを取得
+  # @want = Want.find(params[:id])
+  # post_user_id = want.post_user_id
+  # user = User.find_by(id: post_user_id)
+  # if user
+  #   img_url = user.img
+  # else
+  #   # post_user_idに対応するユーザーが存在しない場合の処理をここに追加
+  #   img_url = nil
+  # end
+  
   erb :index
 end
 
@@ -105,8 +117,10 @@ post '/want/new' do
     title: params[:title],
     genre_id: params[:genre_id],
     place: params[:place],
-    post_group_id: params[:post_group_id]
-    )
+    post_group_id: params[:post_group_id],
+    
+    post_user_id: current_user.id
+  )
     
     redirect '/'
 end
@@ -153,18 +167,33 @@ end
 
 # グループ登録
 
-get '/group/up' do
-    
-end
+# get '/group/up' do
+#     erb :group_up
+# end
 
-post '/group/up' do
-    
-end
+# post '/group/up' do
+#   group = Group.new(
+#     name: params[:name],
+#     password: params[:password],  # パスワードを設定
+#     password_confirmation: params[:password_confirmation],  # パスワード確認を設定
+#   )
 
-get '/group/in' do
-    
-end
+#   redirect '/'
+# end
 
-post '/group/in' do
+# get '/group/in' do
+#     erb :group_in
+# end
+
+# post '/group/in' do
+#     group = Group.find_by(name: params[:user])
     
-end
+#     puts "user#{user}"
+#     if group && group.authenticate(params[:password])
+#         #authenticateメソッド 誤ったパスワード→falseを返す.正しい→そのユーザーを返す
+#         session[:user] = user.id
+#     else
+#         redirect '/signin'
+#     end
+#     redirect '/'
+# end

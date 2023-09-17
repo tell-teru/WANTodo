@@ -100,10 +100,6 @@ get '/want/new' do
   erb :want_new
 end
 
-# post '/want/new' do
-#   "Hello World"
-# end
-
 post '/want/new' do
   Want.create(
     title: params[:title],

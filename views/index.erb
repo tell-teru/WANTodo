@@ -38,7 +38,7 @@
       <% @wants.each do |want| %> 
         <div class="post">
           <div class="contents">
-            <img src="https://placehold.jp/ECD53E/ffffff/150x150.png" alt="ユーザーアイコン" class="user-icon">
+            <img src=<%= current_user.img %> alt="ユーザーアイコン" class="user-icon">
             <div class="text">
               <div class="title">
                 <span class="user-name"><%= want.title %></span>

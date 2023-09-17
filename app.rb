@@ -112,14 +112,28 @@ post '/want/new' do
 end
 
 post '/want/delete/:id' do
+  want = Want.find(params[:id])
+  want.delete
+  redirect '/'
 end
 
 get '/want/edit/:id' do
   @title = 'WANTodo 投稿編集'
-  erb :post_edit
+  
+  @want = Want.find(params[:id])
+  erb :want_edit
 end
 
-post '/want/:id/edit' do
+post '/want/edit/:id' do
+  want = Want.find(params[:id])
+  
+  want.title = params[:title]
+  want.genre_id = params[:genre_id]
+  want.place = params[:place]
+  want.post_group_id = params[:post_group_id]
+  
+  want.save
+  redirect '/'
 end
 
 post '/done/:id' do

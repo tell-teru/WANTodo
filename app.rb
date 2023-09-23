@@ -148,12 +148,11 @@ post '/want/edit/:id' do
 end
 
 get '/want/done/:id' do
-  want = Want.find(params[:id])
-  
-  want.done = !want.done
-  want.save
-
-  redirect '/'
+    want = Want.find(params[:id])
+    want.done = params[:isChecked] == "true" # チェックボックスの状態に応じて設定
+    want.save
+    
+    redirect '/'
 end
 
 # ユーザーページ

@@ -118,6 +118,13 @@
       align-items: center;
     }
     
+    nav .top a.active {
+      /*選択中の背景色*/
+      /*background-color: var(--hover-color);*/
+      background-color: royalblue;
+      color: var(--text-color); /* 選択中の文字色 */
+    }
+    
     nav .top a:hover {
       background-color: var(--hover-color);
       opacity: 1;
@@ -246,7 +253,7 @@
       background-color: lightyellow;
     }
     
-    form div input[type=text], form div input[type=password], form div textarea {
+    form div input[type=text], form div input[type=password], form div textarea, form div select {
       min-height: 50px;
       padding: 0 15px;
       border-radius: 30px;
@@ -306,6 +313,15 @@
       border-radius: 30px;
       object-fit: cover;
     }
+    
+    /*チェックボックス*/
+    
+    .radioArea input[type="checkbox"] {
+      width         : 22pt;        /* 大きさ：横 */
+      height        : 22pt;        /* 大きさ：縦 */
+    }
+    
+    
   </style>
   
   
@@ -313,13 +329,11 @@
 		<div class="container">
       <nav>
         <div class="top">
-          <a href="/">
+          <br>
+          <a href="/" class="<%= 'active' if request.path == '/' %>">
             <!--ホームに戻る-->
             <span> WANTodo </span>
           </a>
-          
-          
-          
           
           <% if !current_user.nil? %>
           	<a href="/user/<%= current_user.id %>">
@@ -339,9 +353,12 @@
          	<% end %>
         </div>
       </nav>
+    
 		<main>
+		  <br>
 			<!--全部のerbファイルの中身-->
 			<%= yield %>
 		</main>
+		</div>
 	</body>
 </html>

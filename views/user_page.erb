@@ -30,14 +30,10 @@
     }
   </style>
   
-  
-  
 <body>
   <!--<h1 class="contents">ホーム</h1>-->
   <% if current_user.nil? %>
-      <br>
-      <br>
-      <h1 align="center"><b>ログインしていません</b></h1>
+      <h1>ログインしていません</h1>
   <% else %>
       <!--<h1><%= current_user.name %>の投稿</h1>-->
       <form action="/want/new">
@@ -45,22 +41,22 @@
       </form>
       
       <% @wants.each do |want| %>
-        <% if want.done== false %>
+        <% if want.done== true %>
           
           <div class="post">
             <div class="contents">
               
               <a align="center" href="/want/done/<%= want.id %>" style="
-  							<% if want.done %>
-  								background-color: darkcyan;
-  							<% else %>
-  								background-color: white;
-  							<% end %>
-  								border: 1px solid black;
-  								width: 20px;
-  								height: 20px;
-  								display: block;
-  							"></a>
+  				<% if want.done %>
+  					background-color: darkcyan;
+  				<% else %>
+  					background-color: white;
+  				<% end %>
+  					border: 1px solid black;
+  					width: 20px;
+  					height: 20px;
+  					display: block;
+  				"></a>
 
               <% postuser = want.user_id %>
               <%  %>

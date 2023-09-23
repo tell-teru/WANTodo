@@ -1,8 +1,8 @@
 <div class="header">
-  <h1 class="contents">投稿する</h1>
+  <h1 class="contents"><b>投稿する</b></b></h1>
 </div>
 <form action="/want/new" method="post" class="contents">
-  
+
   <div>
     <label for="">タイトル</label>
     <input type="text" name="title">
@@ -10,7 +10,15 @@
   
   <div>
     <label for="">ジャンル</label>
-    <input type="text" name="genre_id">
+    <select name="genre_id" id="grade">
+			<option value="1">映画</option>
+			<option value="2">展覧会</option>
+			<option value="3">体験</option>
+			<option value="4">ご飯</option>
+			<option value="5">テーマパーク</option>
+			<option value="6">その他</option>
+		</select>
+    <!--<input type="text" name="genre_id">-->
   </div>
   
   <div>
@@ -27,7 +35,6 @@
     <label for="">投稿グループ</label>
     <input type="text" name="post_group_id">
   </div>
-  
   
   <input type="submit" value="投稿する">
 </form>

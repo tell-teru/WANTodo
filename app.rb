@@ -19,9 +19,9 @@ helpers do #ログイン中のユーザーの情報を取得
 
 end
 
-#Cloudinaryを使えるようにする
+
 before do
-  
+  #Cloudinaryを使えるようにする
     Dotenv.load
     Cloudinary.config do |config|
         config.cloud_name = ENV["CLOUD_NAME"]
@@ -30,6 +30,8 @@ before do
         config.secure = true
     end
     
+    
+    @wants = Want.all
 end
 
 get '/' do
@@ -45,6 +47,7 @@ end
 # ユーザー登録
 
 get '/signin' do
+  @title = 'WANTodo ログイン'
     erb :sign_in
 end
 
@@ -61,6 +64,7 @@ post '/signin' do
 end
 
 get '/signup' do
+  @title = 'WANTodo 新規登録'
     erb :sign_up
 end
 
@@ -110,6 +114,7 @@ post '/want/new' do
     genre_id: params[:genre_id],
     place: params[:place],
     group_id: params[:post_group_id],
+    done: false,
     
     user_id: current_user.id
   )
@@ -147,13 +152,15 @@ get '/want/done/:id' do
   
   want.done = !want.done
   want.save
+
   redirect '/'
 end
 
 # ユーザーページ
 
 get '/user/:id' do
-    
+  @title = 'WANTodo マイページ'
+  erb :user_page
 end
 
 post '/user/:id/done' do

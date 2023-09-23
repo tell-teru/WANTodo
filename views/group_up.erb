@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<body>
+    <div>
+        <div>
+            <p><b>Make Group</b></p>
+        </div>
+        
+        <div class="container">
+            <form action="/signup" method="post" enctype="multipart/form-data">
+                <input class="form-control" name="name" placeholder="group name"><br>
+                <input class="form-control" name="password" type="password" placeholder="password"><br>
+                <input class="form-control" name="password_confirmation" type="password" placeholder="password confirm"><br>
+
+                <div class="opacity-50">
+                    <input class="form-control btn btn-dark mb-3" type="submit" value="GROUP UP">
+                </div>
+            </form>
+        </div>
+        
+        <ul class="container">
+            <% if current_user.nil? %>
+              <a href="/signin" class="nav-link"><p>ログインはこちら</p></a>
+            <% end %>
+        </ul>
+    </div>
+    </body>
+</html>

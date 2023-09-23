@@ -30,6 +30,8 @@ before do
         config.secure = true
     end
     
+    @wants = Want.all
+    
     Genre.create([
       {name: "映画", img: 'img/movie.png'},
       {name: "展覧会", img: 'img/exhibition.png'},
@@ -173,33 +175,33 @@ end
 
 # グループ登録
 
-# get '/group/up' do
-#     erb :group_up
-# end
+get '/group/up' do
+    erb :group_up
+end
 
-# post '/group/up' do
-#   group = Group.new(
-#     name: params[:name],
-#     password: params[:password],  # パスワードを設定
-#     password_confirmation: params[:password_confirmation],  # パスワード確認を設定
-#   )
+post '/group/up' do
+  group = Group.new(
+    name: params[:name],
+    password: params[:password],  # パスワードを設定
+    password_confirmation: params[:password_confirmation],  # パスワード確認を設定
+  )
 
-#   redirect '/'
-# end
+  redirect '/'
+end
 
-# get '/group/in' do
-#     erb :group_in
-# end
+get '/group/in' do
+    erb :group_in
+end
 
-# post '/group/in' do
-#     group = Group.find_by(name: params[:user])
+post '/group/in' do
+    group = Group.find_by(name: params[:user])
     
-#     puts "user#{user}"
-#     if group && group.authenticate(params[:password])
-#         #authenticateメソッド 誤ったパスワード→falseを返す.正しい→そのユーザーを返す
-#         session[:user] = user.id
-#     else
-#         redirect '/signin'
-#     end
-#     redirect '/'
-# end
+    puts "user#{user}"
+    if group && group.authenticate(params[:password])
+        #authenticateメソッド 誤ったパスワード→falseを返す.正しい→そのユーザーを返す
+        session[:user] = user.id
+    else
+        redirect '/group/in'
+    end
+    redirect '/'
+end

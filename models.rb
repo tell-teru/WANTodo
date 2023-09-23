@@ -11,6 +11,8 @@ end
 
 class User < ActiveRecord::Base
     has_secure_password
+    has_many :wants
+    
     validates :name,
         presence: true
     validates :password,
@@ -18,9 +20,13 @@ class User < ActiveRecord::Base
 end
 
 class Want < ActiveRecord::Base
+    belongs_to :user
+    belongs_to :group
+    belongs_to :genre
 end
 
 class Group < ActiveRecord::Base
+    has_many :wants
 end
 
 class Part < ActiveRecord::Base
@@ -30,4 +36,5 @@ class Term < ActiveRecord::Base
 end
 
 class Genre < ActiveRecord::Base
+    has_many :wants
 end

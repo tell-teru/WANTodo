@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 2023_09_17_075151) do
   create_table "wants", force: :cascade do |t|
     t.text "title"
     t.text "place"
-    t.integer "post_user_id"
+    t.integer "user_id"
     t.integer "genre_id"
-    t.integer "post_group_id"
+    t.integer "group_id"
     t.boolean "done"
   end
 

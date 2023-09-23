@@ -39,13 +39,31 @@
   <% else %>
       <!--<h1><%= current_user.name %>の投稿</h1>-->
       <form action="/want/new">
-        <input type="submit" value"want" class="button">
+        <input type="submit" value="+ Want" class="button">
       </form>
       
       <% @wants.each do |want| %> 
         <div class="post">
           <div class="contents">
+            
+            <a align="center" href="/want/done/<%= want.id %>" style="
+							<% if want.done %>
+								background-color: darkcyan;
+							<% else %>
+								background-color: white;
+							<% end %>
+								border: 1px solid black;
+								width: 20px;
+								height: 20px;
+								display: block;
+							"></a>
+							
+							
+            <% postuser = want.user_id %>
+            <%  %>
+            
             <img src=<%= current_user.img %> alt="ユーザーアイコン" class="user-icon">
+            <p><%= current_user.name %></p>
             <div class="text">
               <div class="title">
                 <span class="user-name"><%= want.title %></span>

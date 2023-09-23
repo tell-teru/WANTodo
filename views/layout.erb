@@ -3,13 +3,15 @@
 	<head>
 		<meta charset="UTF-8">
 		<title><%= @title %></title>
-		<link rel="stylesheet" href="/assets/css/index.css">
+		<!--エラー出る-->
+		<!--<link rel="stylesheet" href="/assets/css/style.css">-->
+    <link href="/css/style.css" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </head>
   <style>
-  :root {
+    :root {
       --main-color: #ECD53E;
       --text-color: #1F1F1F;
       --border-color: #F0F3F4;
@@ -17,7 +19,7 @@
     }
     
     body, input {
-      background-color: #ffffff;
+      background-color: lightyellow;
       color: var(--text-color);
     }
     
@@ -157,6 +159,10 @@
     /* index, comments */
     .post {
       border-top: solid 1px var(--border-color);
+      background-color: wheat;
+      border-radius: 50px; /* 角丸にする半径を指定 */
+      margin: 30px 0; /* 上下のマージンを設定 */
+      padding: 5px; /* コンテンツの内側の余白を設定 */
     }
     
     .post .text {

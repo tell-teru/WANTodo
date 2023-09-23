@@ -36,16 +36,7 @@ get '/' do
   @title = 'WANTodo ホーム'
   @wants = Want.all
   
-  # # 投稿したuserのimgを取得
-  # @want = Want.find(params[:id])
-  # post_user_id = want.post_user_id
-  # user = User.find_by(id: post_user_id)
-  # if user
-  #   img_url = user.img
-  # else
-  #   # post_user_idに対応するユーザーが存在しない場合の処理をここに追加
-  #   img_url = nil
-  # end
+  
   
   erb :index
 end
@@ -99,6 +90,7 @@ post '/signup' do
 end
 
 
+#postじゃないか？-><a>タグつかう時はget
 get '/signout' do
     session[:user] = nil
     redirect '/'
@@ -117,9 +109,9 @@ post '/want/new' do
     title: params[:title],
     genre_id: params[:genre_id],
     place: params[:place],
-    post_group_id: params[:post_group_id],
+    group_id: params[:post_group_id],
     
-    post_user_id: current_user.id
+    user_id: current_user.id
   )
     
     redirect '/'
@@ -144,14 +136,18 @@ post '/want/edit/:id' do
   want.title = params[:title]
   want.genre_id = params[:genre_id]
   want.place = params[:place]
-  want.post_group_id = params[:post_group_id]
+  want.group_id = params[:post_group_id]
   
   want.save
   redirect '/'
 end
 
-post '/done/:id' do
+get '/want/done/:id' do
+  want = Want.find(params[:id])
   
+  want.done = !want.done
+  want.save
+  redirect '/'
 end
 
 # ユーザーページ

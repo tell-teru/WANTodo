@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
     has_secure_password
     has_many :wants
     
+    has_many :groups, :through => :parts
+    
     validates :name,
         presence: true
     validates :password,
@@ -26,10 +28,18 @@ class Want < ActiveRecord::Base
 end
 
 class Group < ActiveRecord::Base
+    has_secure_password
     has_many :wants
+    
+    has_many :users, :through => :parts
+    
+    validates :name,
+        presence: true
 end
 
 class Part < ActiveRecord::Base
+    belongs_to :user
+    belongs_to :group
 end
 
 class Term < ActiveRecord::Base

@@ -38,7 +38,7 @@ before do
       {name: "体験", img: 'img/taiken.png'},
       {name: "ご飯", img: 'img/meal.png'},
       {name: "テーマパーク", img: 'img/earth.png'},
-      {name: "その他", img: 'img/other.png'}
+      {name: "その他", img: 'img/others.png'}
     ])
 end
 
@@ -180,10 +180,16 @@ get '/group/up' do
 end
 
 post '/group/up' do
-  group = Group.new(
+  Group.create(
     name: params[:name],
     password: params[:password],  # パスワードを設定
     password_confirmation: params[:password_confirmation],  # パスワード確認を設定
+  )
+  
+  group = Group.find_by(name: params[:name])
+  Part.create(
+    user_id: current_user.id,
+    group_id: group.id 
   )
 
   redirect '/'
@@ -196,10 +202,15 @@ end
 post '/group/in' do
     group = Group.find_by(name: params[:user])
     
-    puts "user#{user}"
+    # puts "user#{user}"
     if group && group.authenticate(params[:password])
         #authenticateメソッド 誤ったパスワード→falseを返す.正しい→そのユーザーを返す
-        session[:user] = user.id
+        # session[:user] = user.id
+        
+        Part.create(
+          user_id: current_user.id,
+          group_id: group.id 
+        )
     else
         redirect '/group/in'
     end

@@ -30,15 +30,19 @@ before do
         config.secure = true
     end
     
-    
-    @wants = Want.all
+    Genre.create([
+      {name: "映画", img: 'img/movie.png'},
+      {name: "展覧会", img: 'img/exhibition.png'},
+      {name: "体験", img: 'img/taiken.png'},
+      {name: "ご飯", img: 'img/meal.png'},
+      {name: "テーマパーク", img: 'img/earth.png'},
+      {name: "その他", img: 'img/other.png'}
+    ])
 end
 
 get '/' do
   @title = 'WANTodo ホーム'
   @wants = Want.all
-  
-  
   
   erb :index
 end

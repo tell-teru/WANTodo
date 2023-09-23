@@ -62,11 +62,17 @@
       opacity: 0.75 !important;
     }
     
-    .user-icon {
+    .icon {
       width: 45px;
       height: 45px;
       border-radius: 30px;
       object-fit: cover;
+    }
+    .genre_icon {
+      width: 45px;
+      height: 45px;
+      /*border-radius: 30px;*/
+      /*object-fit: cover;*/
     }
     
     .header {
@@ -216,7 +222,7 @@
       height: 150px;
     }
     
-    .profile .user-icon {
+    .profile{
       margin: -60px 0 20px 0;
       width: 120px;
       height: 120px;
@@ -307,20 +313,14 @@
       background    : #ffffff;     /* 文字色     */
     }
     
-    .user-icon {
-      width: 45px;
-      height: 45px;
-      border-radius: 30px;
-      object-fit: cover;
-    }
-    
     /*チェックボックス*/
     
     .radioArea input[type="checkbox"] {
       width         : 22pt;        /* 大きさ：横 */
       height        : 22pt;        /* 大きさ：縦 */
+      /*vertical-align: middle*/
+      position:relative;
     }
-    
     
   </style>
   
@@ -336,18 +336,18 @@
           </a>
           
           <% if !current_user.nil? %>
-          	<a href="/user/<%= current_user.id %>">
-	            <img src=<%= current_user.img %> alt="ユーザーアイコン" class="user-icon">
+          	<a href="/user/<%= current_user.id %>" class="<%= 'active' if request.path.start_with?('/user/') %>">
+	            <img src=<%= current_user.img %> alt="ユーザーアイコン" class="icon">
 	            <span><%= current_user.name %>のページ</span>
 	          </a>
 	          <a href="/signout">
 	            <span> SIGN OUT </span>
 	          </a>
 	        <% else %>
-	        	<a href="/signup">
+	        	<a href="/signup" class="<%= 'active' if request.path == '/signup' %>">
 	            <span> 新規登録 </span>
 	          </a>
-	          <a href="/signin">
+	          <a href="/signin" class="<%= 'active' if request.path == '/signin' %>">
 	            <span> ログイン </span>
 	          </a>
          	<% end %>

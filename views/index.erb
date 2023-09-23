@@ -22,13 +22,7 @@
       color         : #003366;     /* 背景色     */
       background    : #ffffff;     /* 文字色     */
     }
-    
-    .user-icon {
-      width: 45px;
-      height: 45px;
-      border-radius: 30px;
-      object-fit: cover;
-    }
+
   </style>
   
   
@@ -51,32 +45,38 @@
           <div class="post">
             <div class="contents">
               
+              <!--チェックボックス-->
               <div class="radioArea">
                 <a align="center" href="#" class="want-done-checkbox" data-want-id="<%= want.id %>">
                   <input type="checkbox" <%= "checked" if want.done %>> <!-- チェックボックスの状態を want.done に応じて設定 -->
                 </a>
               </div>
-
-              <% postuser = want.user_id %>
-              <%  %>
               
-              <img src=<%= current_user.img %> alt="ユーザーアイコン" class="user-icon">
-              <p><%= current_user.name %></p>
-              <div class="text">
-                <div class="title">
-                  <span class="user-name"><%= want.title %></span>
+              
+              <!--投稿の中身-->
+              <% user = User.find(want.user_id) %><!-- Wantを作成したユーザーを取得 -->
+                <img src=<%= user.img %> alt="ユーザーアイコン" class="icon">
+                <p><%= user.name %></p>
+                <div class="text">
+                  <div class="title">
+                    <span class="user-name"><%= want.title %></span>
+                  </div>
+                  <p><%= want.place %></p>
+                  <div class="actions">
+                    <!--<form>-->
+                    <!--  <input type="submit" value="いいね(100)">-->
+                    <!--</form>-->
+                    <a href="/want/edit/<%= want.id %>">編集</a>
+                    <form action ="/want/delete/<%= want.id%>" method = "post">
+                      <input type="submit" value="削除">
+                    </form>
+                  </div>
                 </div>
-                <p><%= want.place %></p>
-                <div class="actions">
-                  <!--<form>-->
-                  <!--  <input type="submit" value="いいね(100)">-->
-                  <!--</form>-->
-                  <a href="/want/edit/<%= want.id %>">編集</a>
-                  <form action ="/want/delete/<%= want.id%>" method = "post">
-                    <input type="submit" value="削除">
-                  </form>
-                </div>
-              </div>
+              
+              <!--カテゴリー-->
+              <% genre = Genre.find(want.genre_id) %>
+              <img src=<%= genre.img %> alt="カテゴリアイコン" class="genre_icon">
+              
             </div>
           </div>
           <% else %>

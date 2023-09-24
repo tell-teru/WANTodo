@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <style>
+    .button {
+      display       : inline-block;
+      border-radius : 13%;          /* 角丸       */
+      font-size     : 18pt;        /* 文字サイズ */
+      text-align    : center;      /* 文字位置   */
+      cursor        : pointer;     /* カーソル   */
+      padding       : 12px 12px;   /* 余白       */
+      background    : #003366;     /* 背景色     */
+      color         : #ffffff;     /* 文字色     */
+      line-height   : 1em;         /* 1行の高さ  */
+      transition    : .3s;         /* なめらか変化 */
+      box-shadow    : 1px 1px 3px #666666;  /* 影の設定 */
+      border        : 2px solid #003366;    /* 枠の指定 */
+    }
+    .button:hover {
+      box-shadow    : none;        /* カーソル時の影消去 */
+      color         : #003366;     /* 背景色     */
+      background    : #ffffff;     /* 文字色     */
+    }
+    
+    .user-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 30px;
+      object-fit: cover;
+    }
+  </style>
+  
+<body>
+  <!--<h1 class="contents">ホーム</h1>-->
+  <% if current_user.nil? %>
+      <h1>ログインしていません</h1>
+  <% else %>
+      <!--<h1><%= current_user.name %>の投稿</h1>-->
+      <form action="/want/new">
+        <input type="submit" value="+ Want" class="button">
+      </form>
+      
+      <% @wants.each do |want| %>
+        <% user = User.find(want.user_id) %><!-- Wantを作成したユーザーを取得 -->
+        <% if user.name == current_user.name %>
+          <% if want.done== true %>
+            
+            <div class="post">
+              <div class="contents">
+                
+                <!--チェックボックス-->
+                <div class="radioArea">
+                  <a align="center" href="#" class="want-done-checkbox" data-want-id="<%= want.id %>">
+                    <input type="checkbox" <%= "checked" if want.done %>> <!-- チェックボックスの状態を want.done に応じて設定 -->
+                  </a>
+                </div>
+                
+                
+                <!--投稿の中身-->
+                  <img src=<%= user.img %> alt="ユーザーアイコン" class="icon">
+                  <p><%= user.name %></p>
+                  <div class="text">
+                    <div class="title">
+                      <span class="user-name"><%= want.title %></span>
+                    </div>
+                    <p><%= want.place %></p>
+                    <div class="actions">
+                      <!--<form>-->
+                      <!--  <input type="submit" value="いいね(100)">-->
+                      <!--</form>-->
+                      <a href="/want/edit/<%= want.id %>">編集</a>
+                      <form action ="/want/delete/<%= want.id%>" method = "post">
+                        <input type="submit" value="削除">
+                      </form>
+                    </div>
+                  </div>
+                
+                <!--カテゴリー-->
+              <!--<% genre = Genre.find(want.genre_id) %>-->
+              <!--<img src=<%= genre.img %> alt="カテゴリアイコン" class="genre_icon">-->
+                
+              </div>
+            </div>
+            <% end %>
+          <% end %>
+      <% end %>
+  <% end %>
+</body>
+
+<script>
+    $(document).ready(function() {
+        $(".want-done-checkbox").on("change", function() {
+            var wantId = $(this).data("want-id");
+            var isChecked = $(this).find("input[type='checkbox']").prop("checked");
+
+            // Ajaxリクエストを送信
+            $.ajax({
+                type: "GET",
+                url: "/want/done/" + wantId,
+                data: { isChecked: isChecked },
+                success: function(response) {
+                    // 成功時の処理（必要に応じて）
+                },
+                error: function() {
+                    // エラー時の処理（必要に応じて）
+                }
+            });
+        });
+    });
+</script>
+</html>

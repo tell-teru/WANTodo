@@ -346,6 +346,12 @@
 	          <a href="/group/in" class="<%= 'active' if request.path == '/group/in' %>">
 	            <span> グループ加入 </span>
 	          </a>
+	          
+	          <a href="/group/page/<%= current_user.id %>" >
+	            <span> グループ一覧 </span>
+	          </a>
+	          
+	          
 	          <a href="/signout">
 	            <span> SIGN OUT </span>
 	          </a>

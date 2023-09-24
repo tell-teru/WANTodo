@@ -32,6 +32,14 @@ before do
     
     @wants = Want.all
     
+    # # user_idがcurrent_userのIDと一致するレコードを選択
+    # user_parts = Part.where(user_id: current_user.id)
+    # # Partレコードのgroup_idを抽出
+    # group_ids = user_parts.pluck(:group_id)
+    # # Groupテーブルからgroup_idsに一致するレコードを取得
+    # @part_groups = Group.where(id: group_ids)
+    
+
     Genre.create([
       {name: "映画", img: 'img/movie.png'},
       {name: "展覧会", img: 'img/exhibition.png'},
@@ -115,11 +123,15 @@ get '/want/new' do
 end
 
 post '/want/new' do
+  # @groups = current_user.groups  # ユーザーが所属するグループのリストを取得
+  # puts @groups
+  
   Want.create(
     title: params[:title],
-    genre_id: params[:genre_id],
     place: params[:place],
-    group_id: params[:post_group_id],
+    genre_id: params[:genre_id],
+    group_id: params[:group_id],
+    # group_id: group_id,  # 選択されたグループのIDを設定
     done: false,
     
     user_id: current_user.id

@@ -10,7 +10,7 @@
   
   <div>
     <label for="">ジャンル</label>
-    <select name="genre_id" id="grade">
+    <select name="genre_id">
 			<option value="1">映画</option>
 			<option value="2">展覧会</option>
 			<option value="3">体験</option>
@@ -33,7 +33,19 @@
   
   <div>
     <label for="">投稿グループ</label>
-    <input type="text" name="post_group_id">
+    
+    <select name="group_id">
+      
+      <!--# current_userが所属するグループのgroup_idを取得-->
+      <% part_groups = Part.where(user_id: current_user.id).pluck(:group_id) %>
+      <!--# Groupテーブルからgroup_idが一致するレコードを取得-->
+      <% matching_groups = Group.where(id: part_groups) %>
+      
+      <% matching_groups.each do |group| %>
+        <option value="<%= group.id %>"><%= group.name %></option>
+      <% end %>
+    
+    </select>
   </div>
   
   <input type="submit" value="投稿する">

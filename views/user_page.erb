@@ -43,7 +43,7 @@
       
       <% @wants.each do |want| %>
         <% user = User.find(want.user_id) %><!-- Wantを作成したユーザーを取得 -->
-        <% if user.name == current_user.name %>
+        <% if user.id == current_user.id %>
           <% if want.done== true %>
             
             <div class="post">
@@ -58,7 +58,7 @@
                 
                 
                 <!--投稿の中身-->
-                  <img src=<%= user.img %> alt="ユーザーアイコン" class="icon">
+                  <img src="<%= user.img %>" alt="ユーザーアイコン" class="icon">
                   <p><%= user.name %></p>
                   <div class="text">
                     <div class="title">

@@ -63,23 +63,25 @@
                   </div>
                   <p><%= want.place %></p>
                   
-                  <ul-date-display>
-                  <% if want.start_date.present? && want.end_date.present? %>
-                    <ul-date-display>
-                    <p><%= want.start_date %></p>
-                    <p>~</p>
-                    <p><%= want.end_date %></p>
-                    </ul-date-display>
-                  <% else %>
-                    <p>日付情報がありません</p>
-                  <% end %>
+                  <div class="date-container">
+                    <% if want.start_date.present? && want.end_date.present? %>
+                      <ul-date-display>
+                      <p><%= want.start_date %></p>
+                      <p>~</p>
+                      <p><%= want.end_date %></p>
+                    <% else %>
+                      <!--<p>日付情報がありません</p>-->
+                    <% end %>
+                  </div>
                   
                   
                   <div class="actions">
                     <!--<form>-->
                     <!--  <input type="submit" value="いいね(100)">-->
                     <!--</form>-->
-                    <a href="/want/edit/<%= want.id %>">編集</a>
+                    <form action ="/want/edit/<%= want.id %>" method = "get">
+                      <input type="submit" value="編集">
+                    </form>
                     <form action ="/want/delete/<%= want.id%>" method = "post">
                       <input type="submit" value="削除">
                     </form>

@@ -38,8 +38,7 @@
     <form action="/want/new">
       <input type="submit" value="+ Want" class="button">
     </form>
-    <% part_groups = Part.where(user_id: current_user.id).pluck(:group_id) %>
-    <% matching_wants = Want.where(group_id: part_groups) %>
+    <% matching_wants = Want.where(user_id: current_user.id) %>
     <% matching_wants.each do |want| %>
       <% user = User.find(want.user_id) %>
       <div class="post">
@@ -47,7 +46,8 @@
           <!-- チェックボックス -->
           <div class="radioArea">
             <a align="center" href="#" class="want-done-checkbox" data-want-id="<%= want.id %>">
-              <input type="checkbox" <%= "checked" if want.done %>>
+              <!--<input type="checkbox" <%= "checked" if want.done %>>-->
+              <input type="checkbox" <%= want.done ? 'checked' : '' %>>
             </a>
           </div>
           <!-- 投稿の中身 -->

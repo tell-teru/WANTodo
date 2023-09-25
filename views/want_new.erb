@@ -1,5 +1,5 @@
 <div class="header">
-  <h1 class="contents"><b>投稿する</b></b></h1>
+  <h1 class="contents"><b>やりたいことを投稿しよう！</b></b></h1>
 </div>
 <form action="/want/new" method="post" class="contents">
 
@@ -26,10 +26,14 @@
     <input type="text" name="place">
   </div>
   
-  <!--<div>-->
-  <!--  <label for="">期間</label>-->
-  <!--  <input type="text" name="date">-->
-  <!--</div>-->
+  <div>
+    <label for="">期間</label>
+    <ul>
+      <input class="date-range" type="date" name="start_date">
+      <span>〜</span>
+      <input class="date-range" type="date" name="end_date">
+      </ul>
+  </div>
   
   <div>
     <label for="group_id">投稿グループ</label>
@@ -38,15 +42,11 @@
       <% part_groups = Part.where(user_id: current_user.id).pluck(:group_id) %>
        <!--# Groupテーブルからgroup_idが一致するレコードを取得-->
       <% matching_groups = Group.where(id: part_groups) %>
-  
-      <% if matching_groups.present? %>
-        <% matching_groups.each do |group| %>
-          <option value="<%= group.id %>"><%= group.name %></option>
-        <% end %>
-      <% else %>
-        <!-- グループが存在しない場合や参加していない場合の処理をここに追加 -->
-        <option value="">グループがありません</option>
+
+      <% matching_groups.each do |group| %>
+        <option value="<%= group.id %>"><%= group.name %></option>
       <% end %>
+
     </select>
   </div>
   

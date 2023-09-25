@@ -62,6 +62,19 @@
                     <span class="user-name"><%= want.title %></span>
                   </div>
                   <p><%= want.place %></p>
+                  
+                  <ul-date-display>
+                  <% if want.start_date.present? && want.end_date.present? %>
+                    <ul-date-display>
+                    <p><%= want.start_date %></p>
+                    <p>~</p>
+                    <p><%= want.end_date %></p>
+                    </ul-date-display>
+                  <% else %>
+                    <p>日付情報がありません</p>
+                  <% end %>
+                  
+                  
                   <div class="actions">
                     <!--<form>-->
                     <!--  <input type="submit" value="いいね(100)">-->

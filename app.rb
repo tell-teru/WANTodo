@@ -40,6 +40,12 @@ before do
       {name: "テーマパーク", img: 'img/earth.png'},
       {name: "その他", img: 'img/others.png'}
     ])
+    
+    Group.create(
+      name: "全体",
+      password: "all",  # パスワードを設定
+      password_confirmation: "all"  # パスワード確認を設定
+    )
 end
 
 get '/' do
@@ -93,6 +99,11 @@ post '/signup' do
 
   if user.save
     session[:user] = user.id
+    Part.create(
+      user_id: current_user.id,
+      group_id: 1
+    )
+  
     redirect '/'
   else
     redirect '/signup'
@@ -115,21 +126,30 @@ get '/want/new' do
 end
 
 post '/want/new' do
-  # @groups = current_user.groups  # ユーザーが所属するグループのリストを取得
-  # puts @groups
+  # フォームから送信された日付文字列をDateオブジェクトに変換
+  start_date = Date.parse(params[:start_date])
+  end_date = Date.parse(params[:end_date])
   
-  Want.create(
-    title: params[:title],
-    place: params[:place],
-    genre_id: params[:genre_id],
-    group_id: params[:group_id],
-    # group_id: group_id,  # 選択されたグループのIDを設定
-    done: false,
+  # end_dateの方が後の日付であるかを確認
+  if start_date <= end_date
     
-    user_id: current_user.id
-  )
+    Want.create(
+      title: params[:title],
+      place: params[:place],
+      genre_id: params[:genre_id],
+      group_id: params[:group_id],
+      done: false,
+      
+      start_date: start_date,
+      end_date: end_date,
+      
+      user_id: current_user.id
+    )
     
     redirect '/'
+  else
+    redirect '/want/new'
+  end
 end
 
 post '/want/delete/:id' do
@@ -187,7 +207,7 @@ post '/group/up' do
   Group.create(
     name: params[:name],
     password: params[:password],  # パスワードを設定
-    password_confirmation: params[:password_confirmation],  # パスワード確認を設定
+    password_confirmation: params[:password_confirmation]  # パスワード確認を設定
   )
   
   group = Group.find_by(name: params[:name])
@@ -219,4 +239,15 @@ post '/group/in' do
         redirect '/group/in'
     end
     redirect '/'
+end
+
+# グループページ
+
+get '/group/page/:id' do
+  @title = 'WANTodo グループ投稿'
+  erb :group_page
+end
+
+post '/user/:id/done' do
+  
 end

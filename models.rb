@@ -3,11 +3,11 @@ Bundler.require
 
 ActiveRecord::Base.establish_connection
 
-class Count < ActiveRecord::Base
-end
+# class Count < ActiveRecord::Base
+# end
 
-class Entry < ActiveRecord::Base
-end
+# class Entry < ActiveRecord::Base
+# end
 
 class User < ActiveRecord::Base
     has_secure_password

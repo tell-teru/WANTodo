@@ -169,8 +169,8 @@ post '/want/edit/:id' do
   want.place = params[:place]
   want.group_id = params[:group_id]
   
-  # start_date = params[:start_date]
-  # end_date = params[:end_date]
+  want.start_date = params[:start_date]
+  want.end_date = params[:end_date]
   
   want.save
   redirect '/'

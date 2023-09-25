@@ -128,34 +128,6 @@ get '/want/new' do
 end
 
 post '/want/new' do
-  
-    # フォームから送信された日付文字列をDateオブジェクトに変換
-    # start_date = Date.parse(params[:start_date])
-    # end_date = Date.parse(params[:end_date])
-    
-    if params[:start_date].nil?
-      # params[:start_date] が nil の場合の処理をここに記述
-      start_date = Date.today
-    else
-      begin
-        # params[:start_date] が nil でない場合の処理をここに記述
-        start_date = Date.parse(params[:start_date])
-      rescue ArgumentError => e
-        # # 日付文字列が無効な場合のエラーハンドリング
-      end
-    end
-
-    
-    if params[:end_date].nil?
-      # params[:start_date] が nil の場合の処理をここに記述
-      end_date = Date.today + 1.year
-    else
-      begin
-        # params[:start_date] が nil でない場合の処理をここに記述
-        end_date = Date.parse(params[:end_date])
-      rescue ArgumentError => e
-      end
-    end
     
   # end_dateの方が後の日付であるかを確認
   # if start_date <= end_date -> バリデーションで実装
@@ -167,8 +139,8 @@ post '/want/new' do
     group_id: params[:group_id],
     done: false,
     
-    start_date: start_date,
-    end_date: end_date,
+    start_date: params[:start_date],
+    end_date: params[:end_date],
     
     user_id: current_user.id
   )

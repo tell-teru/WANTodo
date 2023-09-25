@@ -47,7 +47,7 @@
               
               <!--チェックボックス-->
               <div class="radioArea">
-                <a align="center" href="#" class="want-done-checkbox" data-want-id="<%= want.id %>">
+                <a href="/want/done/<%= want.id %>" class="want-done-checkbox" data-want-id="<%= want.id %>">
                   <input type="checkbox" <%= "checked" if want.done %>> <!-- チェックボックスの状態を want.done に応じて設定 -->
                 </a>
               </div>
@@ -105,19 +105,46 @@
 </body>
 
 <!--ちょっとここ理解乏しいかも！！-->
+
+<!--//     $(document).ready(function() {-->
+<!--//         $(".want-done-checkbox").on("change", function() {-->
+<!--//             var wantId = $(this).data("want-id");-->
+<!--//             var isChecked = $(this).find("input[type='checkbox']").prop("checked");-->
+
+<!--//             // Ajaxリクエストを送信-->
+<!--//             $.ajax({-->
+<!--//                 type: "GET",-->
+<!--//                 url: "/want/done/" + wantId,-->
+<!--//                 data: { isChecked: isChecked },-->
+<!--//                 success: function(response) {-->
+<!--//                     // 成功時の処理（必要に応じて）-->
+<!--//                 },-->
+<!--//                 error: function() {-->
+<!--//                     // エラー時の処理（必要に応じて）-->
+<!--//                 }-->
+<!--//             });-->
+<!--//         });-->
+<!--//     });-->
+
+
 <script>
     $(document).ready(function() {
         $(".want-done-checkbox").on("change", function() {
             var wantId = $(this).data("want-id");
-            var isChecked = $(this).find("input[type='checkbox']").prop("checked");
+            var checkbox = $(this).find("input[type='checkbox']");
+            var isChecked = checkbox.prop("checked");
+
+            // want.doneの逆の値を設定
+            var newDoneValue = !isChecked;
 
             // Ajaxリクエストを送信
             $.ajax({
                 type: "GET",
                 url: "/want/done/" + wantId,
-                data: { isChecked: isChecked },
+                data: { isChecked: newDoneValue }, // 逆の値を送信
                 success: function(response) {
                     // 成功時の処理（必要に応じて）
+                    // サーバーからの応答を処理することができます
                 },
                 error: function() {
                     // エラー時の処理（必要に応じて）
@@ -126,4 +153,6 @@
         });
     });
 </script>
+
+
 </html>

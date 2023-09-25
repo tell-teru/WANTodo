@@ -26,10 +26,14 @@
     <input type="text" name="place" value="<%= @want.place %>">
   </div>
   
-  <!--<div>-->
-  <!--  <label for="">期間</label>-->
-  <!--  <input type="text" name="date">-->
-  <!--</div>-->
+  <div>
+    <label for="">期間</label>
+    <ul>
+      <input class="date-range" type="date" name="start_date">
+      <span>〜</span>
+      <input class="date-range" type="date" name="end_date">
+      </ul>
+  </div>
   
   <div>
     <label for="group_id">投稿グループ</label>

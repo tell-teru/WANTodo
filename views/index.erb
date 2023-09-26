@@ -39,7 +39,10 @@
         <input type="submit" value="+ Want" class="button">
       </form>
       
-      <% @wants.each do |want| %>
+      <% part_groups = Part.where(user_id: current_user.id).pluck(:group_id) %>
+      <% @part_in_all_wants = Want.where(group_id: part_groups) %>
+      
+      <% @part_in_all_wants.each do |want| %>
         <% if want.done== false %>
           
           <div class="post">

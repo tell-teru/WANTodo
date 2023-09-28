@@ -36,7 +36,7 @@
   </div>
   
   <div>
-    <label for="group_id">投稿グループ</label>
+      <label for="group_id">投稿グループ</label>
     <select name="group_id">
        <!--# current_userが所属するグループのgroup_idを取得 -->
       <% part_groups = Part.where(user_id: current_user.id).pluck(:group_id) %>
@@ -46,9 +46,14 @@
       <% matching_groups.each do |group| %>
         <option value="<%= group.id %>"><%= group.name %></option>
       <% end %>
-
+      <a href="/group/up"><b><option value="0">新規グループ作成</option></b></a>
     </select>
+    <a href="/group/up"><b>グループ作成</b></a>
+
+    
+
   </div>
-  
+  <br>
   <input type="submit" value="投稿する">
 </form>
+

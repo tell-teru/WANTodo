@@ -131,26 +131,33 @@ post '/want/new' do
     
   # end_dateの方が後の日付であるかを確認
   # if start_date <= end_date -> バリデーションで実装
-    
-  Want.create(
-    title: params[:title],
-    place: params[:place],
-    genre_id: params[:genre_id],
-    group_id: params[:group_id],
-    done: false,
-    
-    start_date: params[:start_date],
-    end_date: params[:end_date],
-    
-    user_id: current_user.id
-  )
+  if params[:group_id].to_i == 0
+    redirect '/group/up'
+  else
+    Want.create(
+      title: params[:title],
+      place: params[:place],
+      genre_id: params[:genre_id],
+      group_id: params[:group_id],
+      done: false,
+      
+      start_date: params[:start_date],
+      end_date: params[:end_date],
+      
+      user_id: current_user.id
+    )
+  end
     
   redirect '/'
 end
 
 post '/want/delete/:id' do
   want = Want.find(params[:id])
-  want.delete
+  
+  if want.user_id == current_user.id
+    want.delete
+  end
+  
   redirect '/'
 end
 

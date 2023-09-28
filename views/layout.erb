@@ -18,6 +18,65 @@
       --hover-color: #F3F3F3;
     }
     
+    header {
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px 40px;
+      background: #eee;
+      box-sizing: border-box;
+      transition: padding .3s;
+    }
+    header .inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    .logo {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      font-weight: bold;
+    }
+    
+    
+    /* header-navi */
+    
+    header .navi {
+      margin: 0 0 0 auto;
+      padding: 0;
+      font-size: 14px;
+      font-weight: bold;
+      display: flex;
+      list-style: none;
+    }
+    header .navi li {
+      margin: 5px 0 5px 40px;
+    }
+    header .navi li:first-child {
+      margin-left: 0;
+    }
+    header .navi li a {
+      display: block;
+      box-sizing: border-box;
+      text-decoration: none;
+      color: #333;
+    }
+    /*ホバー時に下線がつく*/
+    /*header .navi li a:hover {*/
+    /*  text-decoration: underline;*/
+    /*}*/
+    
+    /* add css  */
+    
+    #header.scroll {
+      padding: 10px 40px;
+    }
+
+    
     body, input {
       background-color: lightyellow;/* 背景色 */
       color: var(--text-color);
@@ -365,8 +424,36 @@
   </style>
   
 	<body>
+	  <% if !current_user.nil? %>
 	  
-	  
+  	  <header id="header">
+      <div class="navbar navbar-expand-md navbar-dark mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">WANTodo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- SIGN OUT を右寄せに配置 -->
+    <div class="ml-auto">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/user/<%= current_user.id %>" style="color: black;"> <%= current_user.name %>のページ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/signout" style="background-color: white; color: black;">SIGN OUT</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+      
+      </header>
+      
+      
+      
+    <% end %>
 	  
 		<div class="container">
       <nav>
@@ -407,12 +494,6 @@
 	            <span> ログイン </span>
 	          </a>
          	<% end %>
-        </div>
-        
-        <div class="bottom">
-          <a href="/signout">
-            <span> SIGN OUT </span>
-          </a>
         </div>
           
       </nav>

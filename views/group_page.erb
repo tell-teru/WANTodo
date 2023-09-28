@@ -30,46 +30,6 @@
       object-fit: cover;
     }
   </style>
-  
-<!--<body>-->
-<!--  <% if current_user.nil? %>-->
-<!--    <h1>ログインしていません</h1>-->
-<!--  <% else %>-->
-<!--    <form action="/want/new">-->
-<!--      <input type="submit" value="+ Want" class="button">-->
-<!--    </form>-->
-<!--    <% matching_wants = Want.where(user_id: current_user.id) %>-->
-<!--    <% matching_wants.each do |want| %>-->
-<!--      <% user = User.find(want.user_id) %>-->
-<!--      <div class="post">-->
-<!--        <div class="contents">-->
-          <!-- チェックボックス -->
-<!--          <div class="radioArea">-->
-<!--            <a align="center" href="#" class="want-done-checkbox" data-want-id="<%= want.id %>">-->
-              <!--<input type="checkbox" <%= "checked" if want.done %>>-->
-<!--              <input type="checkbox" <%= want.done ? 'checked' : '' %>>-->
-<!--            </a>-->
-<!--          </div>-->
-          <!-- 投稿の中身 -->
-<!--          <img src=<%= user.img %> alt="ユーザーアイコン" class="icon">-->
-<!--          <p><%= user.name %></p>-->
-<!--          <div class="text">-->
-<!--            <div class="title">-->
-<!--              <span class="user-name"><%= want.title %></span>-->
-<!--            </div>-->
-<!--            <p><%= want.place %></p>-->
-<!--            <div class="actions">-->
-<!--              <a href="/want/edit/<%= want.id %>">編集</a>-->
-<!--              <form action="/want/delete/<%= want.id %>" method="post">-->
-<!--                <input type="submit" value="削除">-->
-<!--              </form>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    <% end %>-->
-<!--  <% end %>-->
-<!--</body>-->
 
 <body>
   <% if current_user.nil? %>

@@ -114,7 +114,7 @@
       flex-direction: column;
       gap: 20px;
     }
-    
+
     nav .top a {
       height: 50px;
       padding: 10px 10px 10px 10px;
@@ -431,9 +431,9 @@
 	          
 	          <% end %>
 	          
-	          <a href="/signout">
-	            <span> SIGN OUT </span>
-	          </a>
+	          <!--<a href="/signout">-->
+	          <!--  <span> SIGN OUT </span>-->
+	          <!--</a>-->
 	        <% else %>
 	        	<a href="/signup" class="<%= 'active' if request.path == '/signup' %>">
 	            <span> 新規登録 </span>
@@ -443,6 +443,13 @@
 	          </a>
          	<% end %>
         </div>
+        
+        <div class="bottom">
+          <a href="/signout">
+            <span> SIGN OUT </span>
+          </a>
+        </div>
+          
       </nav>
     
 		<main>

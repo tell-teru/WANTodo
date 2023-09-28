@@ -9,11 +9,15 @@
         
         <div class="container">
             <form action="/signup" method="post" enctype="multipart/form-data">
-                <input class="form-control" name="name" placeholder="user name"><br>
-                <input class="form-control" name="password" type="password" placeholder="password"><br>
-                <input class="form-control" name="password_confirmation" type="password" placeholder="password confirm"><br>
+                <label for="">ユーザー名</label>
+                <input class="form-control" name="name" placeholder="user name">
+                <label for="">パスワード</label>
+                <input class="form-control" name="password" type="password" placeholder="password">
+                <label for="">パスワード確認</label>
+                <input class="form-control" name="password_confirmation" type="password" placeholder="password confirm">
                 <!--<input class="form-control" name="iconimg" type="icon" placeholder="アイコンを選択">-->
-        
+                
+                <label for="">アイコン画像</label>
                 <p class="drag-drop-buttons">
                     <input id="file-input" type="file" accept="image/*" name="upload_photo" onChange="photoPreview(event)">
                 </p>

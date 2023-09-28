@@ -13,3 +13,5 @@ gem 'webrick', '~> 1.7'
 
 gem 'carrierwave'
 gem 'cloudinary'
+
+# gem "dotenv"

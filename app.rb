@@ -191,8 +191,9 @@ get '/user/:id' do
   erb :user_page
 end
 
-post '/user/:id/done' do
-  
+get '/user/:id/done' do
+  @title = 'WANTodo マイDONEページ'
+  erb :user_done_page
 end
 
 

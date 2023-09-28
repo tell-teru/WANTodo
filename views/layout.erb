@@ -277,22 +277,27 @@
       min-height: 100px;
     } 
     
-    form input[type=submit] {
-      width: 120px;
-      height: 40px;
-      background-color: var(--main-color);
-      color: #ffffff;
-      font-weight: bold;
-      border-radius: 30px;
-      border: none;
-      cursor: pointer;
-    }
+    /*form input[type=submit] {*/
+    /*  width: 120px;*/
+    /*  height: 40px;*/
+    /*  background-color: var(--main-color);*/
+    /*  color: #ffffff;*/
+    /*  font-weight: bold;*/
+    /*  border-radius: 30px;*/
+    /*  border: none;*/
+    /*  cursor: pointer;*/
+    /*}*/
     
-    form input[type=submit]:hover {
-      opacity: 0.75;
+    /*form input[type=submit]:hover {*/
+    /*  opacity: 0.75;*/
+    /*}*/
+  
+    .user-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 30px;
+      object-fit: cover;
     }
-  
-  
   
     .button {
       display       : inline-block;
@@ -342,6 +347,41 @@
       justify-content: space-between; /* 要素を均等に配置 */
       align-items: center; /* 要素を垂直方向に中央揃えに配置 */
     }
+    
+    /*parallel-even-distribution {*/
+    /*    display: -webkit-flex;*/
+    /*    display: flex;*/
+    /*    -webkit-justify-content: space-between;*/
+    /*    justify-content: space-between;*/
+    /*}　*/
+    
+    
+    .parallel-even-distribution {
+        display: flex;
+        justify-content: space-between; /* ボタンを横並びに配置 */
+    }
+    
+    
+    .done_button {
+      display       : inline-block;
+      border-radius : 20%;          /* 角丸  */    
+      font-size     : 18pt;        /* 文字サイズ*/ 
+      text-align    : center;      /* 文字位置   */
+      cursor        : pointer;     /* カーソル   */
+      padding       : 12px 12px;   /* 余白       */
+      background    : rgba(203, 203, 203, 0.75);     /* 背景色   */  
+      color         : #7a7a7a;     /* 文字色     */
+      line-height   : 1em;         /* 1行の高さ  */
+      transition    : .3s;         /* なめらか変化 */
+      box-shadow    : 1px 1px 3px #666666;  /* 影の設定 */
+      border        : 2px solid rgba(203, 203, 203, 0.75);    /* 枠の指定 */
+    }
+    .done_button:hover {
+      box-shadow    : none;        /* カーソル時の影消去 */
+      color         : rgba(203, 203, 203, 0.75);     /* 背景色    */ 
+      background    : #7a7a7a;     /* 文字色     */
+    }
+
 
     
   </style>

@@ -382,19 +382,7 @@
 	            <img src=<%= current_user.img %> alt="ユーザーアイコン" class="icon">
 	            <span><%= current_user.name %>のページ</span>
 	          </a>
-	          
-	          
-	          <!--userページの時にグループ作成登録のボタン出現-->
-	          <% if request.path.include?('/user') %>
-  	          <a href="/group/up" class="<%= 'active' if request.path == '/group/up' %>">
-  	            <span> グループ作成 </span>
-  	          </a>
-  	          <a href="/group/in" class="<%= 'active' if request.path == '/group/in' %>">
-  	            <span> グループ加入 </span>
-  	          </a>
-  	          
-  	          
-  	         <% else %>
+  	         
 	          <!--メインページの時には所属グループ一覧-->
 	          
   	          <!--# current_userが所属するグループのgroup_idを取得 -->
@@ -410,7 +398,6 @@
                 <% end %>
               <% end %>
 	          
-	          <% end %>
 
 	        <% else %>
 	        	<a href="/signup" class="<%= 'active' if request.path == '/signup' %>">

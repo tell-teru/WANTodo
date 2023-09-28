@@ -12,7 +12,7 @@ ActiveRecord::Base.establish_connection
 class User < ActiveRecord::Base
     has_secure_password
     has_many :wants
-    
+    has_many :parts
     has_many :groups, :through => :parts
     
     validates :name,
@@ -34,7 +34,7 @@ end
 class Group < ActiveRecord::Base
     has_secure_password
     has_many :wants
-    
+    has_many :parts
     has_many :users, :through => :parts
     
     validates :name,

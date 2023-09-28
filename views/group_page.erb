@@ -85,6 +85,18 @@
       <h1>指定されたグループは存在しません</h1>
     <% else %>
       <h1><%= group.name %>の投稿</h1>
+      
+      <div class="user-list">
+        <% group.users.each do |user| %>
+          <div class="user-box" style="display: inline-block; margin-right: 10px;">
+            <img src="<%= user.img %>" alt="<%= user.name %>" width="40" height="40">
+            <!--<span><%= user.name %></span>-->
+          </div>
+        <% end %>
+      </div>
+      
+      <br>
+      
       <form action="/want/new">
         <input type="submit" value="+ Want" class="button">
       </form>

@@ -447,6 +447,11 @@
           <!-- SIGN OUT を右寄せに配置 -->
           <div class="ml-auto" style="margin-right: 30px;">
             <ul class="navbar-nav">
+              <% if current_user %>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/group/up"> +Group </a>
+              </li>
+              <% end %>
               <li class="nav-item">
                 <% if current_user %>
                   <a class="nav-link active" aria-current="page" href="/user/<%= current_user.id %>" style="color: black;"> <%= current_user.name %>のページ</a>

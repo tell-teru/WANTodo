@@ -9,9 +9,12 @@
         
         <div class="container">
             <form action="/group/up" method="post" enctype="multipart/form-data">
-                <input class="form-control" name="name" placeholder="group name"><br>
-                <input class="form-control" name="password" type="password" placeholder="password"><br>
-                <input class="form-control" name="password_confirmation" type="password" placeholder="password confirm"><br>
+                <label for="">ユーザー名</label>
+                <input class="form-control" name="name" placeholder="group name">
+                <label for="">パスワード</label>
+                <input class="form-control" name="password" type="password" placeholder="password">
+                <label for="">パスワード確認</label>
+                <input class="form-control" name="password_confirmation" type="password" placeholder="password confirm">
 
                 <div class="opacity-50">
                     <input class="form-control btn btn-dark mb-3" type="submit" value="GROUP UP">
@@ -19,9 +22,11 @@
             </form>
         </div>
         
-        <ul class="container">
+        <ul align="left" class="container">
             <% if current_user.nil? %>
               <a href="/signin" class="nav-link"><p>ログインはこちら</p></a>
+            <% else %>
+                <a href="/group/in" class="nav-link"><p>グループ参加はこちら</p></a>
             <% end %>
         </ul>
     </div>

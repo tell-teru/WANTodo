@@ -425,8 +425,6 @@
   </style>
   
 	<body>
-	  <% if !current_user.nil? %>
-	  
   	  <header id="header" style="background-color: lightyellow;">
       <div class="navbar navbar-expand-lg navbar-light" style="background-color: white; border-radius: 30px;">
         <div class="container-fluid">
@@ -438,9 +436,11 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <!-- ナビゲーションメニューの項目を左寄せに配置 -->
+              <% if current_user %>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/want/new"> +WANTodo </a>
               </li>
+              <% end %>
             </ul>
           </div>
       
@@ -448,10 +448,18 @@
           <div class="ml-auto" style="margin-right: 30px;">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/user/<%= current_user.id %>" style="color: black;"> <%= current_user.name %>のページ</a>
+                <% if current_user %>
+                  <a class="nav-link active" aria-current="page" href="/user/<%= current_user.id %>" style="color: black;"> <%= current_user.name %>のページ</a>
+                <% else %>
+                  <a class="nav-link active" aria-current="page" href="/signin" style="color: black;">ログイン</a>
+                <% end %>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/signout" style="color: black;">SIGN OUT</a>
+                <% if current_user %>
+                  <a class="nav-link active" aria-current="page" href="/signout" style="color: black;">SIGN OUT</a>
+                <% else %>
+                  <a class="nav-link active" aria-current="page" href="/signup" style="color: black;">新規登録</a>
+                <% end %>
               </li>
             </ul>
           </div>
@@ -463,8 +471,7 @@
       
       
       
-    <% end %>
-	  
+
 		<div class="container">
       <nav>
         <div class="top">

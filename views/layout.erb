@@ -230,7 +230,7 @@
     }
     
     /* index, comments */
-    .post {
+    .posts {
       border-top: solid 1px var(--border-color);
       /*background-color: wheat;  */
       background-color: #EEDEC9;
@@ -239,21 +239,21 @@
       padding: 5px; /* コンテンツの内側の余白を設定 */
     }
     
-    .post .text {
+    .posts .text {
       width: 100%;
     }
     
-    .post .contents {
+    .posts .contents {
       display: flex;
       gap: 10px;
     }
     
-    .post .contents .title .user-name {
+    .posts .contents .title .user-name {
       font-size: 30px;
       font-weight: bold;
     }
     
-    .post .actions {
+    .posts .actions {
       width: 100%;
       margin-top: 0px;
       display: flex;
@@ -261,14 +261,14 @@
       justify-content: flex-end;
     }
     
-    .post .actions input[type="submit"], .post .actions a {
+    .posts .actions input[type="submit"], .posts .actions a {
       height: auto;
       color: var(--text-color);
       background: none;
       font-weight: 500;
     }
     
-    .comment .post {
+    .comment .posts {
       border-bottom: solid 1px var(--border-color);
     }
     
@@ -438,7 +438,7 @@
               <!-- ナビゲーションメニューの項目を左寄せに配置 -->
               <% if current_user %>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/want/new"> +WANTodo </a>
+                <a class="nav-link active" aria-current="page" href="/want/new"> +Want </a>
               </li>
               <% end %>
             </ul>

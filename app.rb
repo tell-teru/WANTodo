@@ -89,7 +89,7 @@ post '/signup' do
     upload = Cloudinary::Uploader.upload(tempfile.path)
     img_url = upload['url']
   else
-    img_url = url("images/user_img_nil.png")
+    img_url = url("img/nilicon.png")
   end
 
   user = User.new(
